@@ -21,6 +21,9 @@ public class Megaman : MonoBehaviour
     public float doublejumpspeed = 2.5f;
     private bool candoublejump;
     public AudioSource salto;
+    public AudioSource balazo;
+    public AudioSource dachilin;
+    public AudioSource fallinginlove;
     
 
 
@@ -57,7 +60,7 @@ public class Megaman : MonoBehaviour
 
             if (Entierra())
             {
-
+                salto.Play();
                 candoublejump = true;
                 //cuerpo.AddForce(new Vector2(0, jumpforce));
                 cuerpo.velocity = new Vector2(cuerpo.velocity.x, jumpforce);
@@ -84,6 +87,7 @@ public class Megaman : MonoBehaviour
     {
         if (cuerpo.velocity.y < 0)
         {
+            fallinginlove.Play();
             mianimador.SetBool("Cayendo", true);
 
         }
@@ -112,6 +116,7 @@ public class Megaman : MonoBehaviour
             if (!shooting)
             {
                 shooting = true;
+                balazo.Play();
             }
         }
         if (shooting)
@@ -165,6 +170,7 @@ public class Megaman : MonoBehaviour
                 dash_t += 1 * Time.deltaTime;
                 if (dash_t < 0.35f)
                 {
+                    dachilin.Play();
                     dash = true;
                     mianimador.SetBool("dash", true);
                     transform.Translate(Vector2.right * speed_dash * Time.deltaTime);
